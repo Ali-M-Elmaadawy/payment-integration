@@ -29,7 +29,7 @@ in the future
 
 ## Additional Notes
 
-- there is an info table in orders table and order_products table and payments table
+- there is an info column in orders table and order_products table and payments table
 which helps in case of deleting users so the order will be exists buy user_id=NULL and also if the payment method deleted so the payment of the order will be ... , also the product ...
 -(note) we can manage the deleting case by soft delete ...
 
