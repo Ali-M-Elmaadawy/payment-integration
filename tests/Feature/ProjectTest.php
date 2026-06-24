@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
@@ -9,6 +10,7 @@ use App\Models\Admin;
 
 class ProjectTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -32,7 +34,7 @@ class ProjectTest extends TestCase
         $responseLogin->assertStatus(200);
 
         
-        $token = auth('api')->login(User::first());
+        $token = auth('api')->login(User::find(1));
 
         $order_data =  
             [
@@ -54,9 +56,9 @@ class ProjectTest extends TestCase
 
 
        
-        $admin_token = auth('api')->login(Admin::first());
+        $admin_token = auth('api')->login(Admin::find(1));
 
-        $responseOrderConfirmation = $this->post("api/admin/orders/1/update/status", [
+        $responseOrderConfirmation = $this->post('api/admin/orders/1/update/status', [
            'status' => 'confirmed'
         ] , ['Authorization' => 'Bearer ' . $admin_token]);
     
